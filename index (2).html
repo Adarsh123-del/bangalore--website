@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bangalore - City of Dreams</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #0f172a;
+      color: white;
+    }
+
+    header {
+      background: rgba(255, 255, 255, 0.08);
+      padding: 20px;
+      text-align: center;
+      position: sticky;
+      top: 0;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 1.8rem;
+      color: #38bdf8;
+    }
+
+    nav {
+      margin-top: 10px;
+    }
+
+    nav button {
+      margin: 5px;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      background: #38bdf8;
+      color: black;
+      transition: 0.2s;
+    }
+
+    nav button:hover {
+      background: white;
+    }
+
+    section {
+      display: none;
+      padding: 30px;
+    }
+
+    section.active {
+      display: block;
+    }
+
+    .card-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.07);
+      padding: 18px;
+      border-radius: 15px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      background: rgba(255, 255, 255, 0.12);
+    }
+
+    .details-box {
+      margin-top: 30px;
+      padding: 20px;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 15px;
+      border-left: 5px solid #38bdf8;
+    }
+
+    footer {
+      text-align: center;
+      padding: 15px;
+      background: rgba(255, 255, 255, 0.05);
+      margin-top: 50px;
+      font-size: 0.9rem;
+      opacity: 0.8;
+    }
+
+    ul {
+      line-height: 1.8;
+    }
+
+    h2 {
+      color: #38bdf8;
+    }
+
+    h3 {
+      color: #a5f3fc;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <h1>Bangalore - A City of Dreams and Silicon Valley of India</h1>
+    <nav>
+      <button onclick="showPage('home')">Home</button>
+      <button onclick="showPage('explore')">Explore Bangalore</button>
+    </nav>
+  </header>
+
+  <!-- PAGE 1 HOME -->
+  <section id="home" class="active">
+    <h2>Welcome to Bangalore</h2>
+    <p>
+      Bangalore (Bengaluru) is India's fastest-growing metropolitan city known for its
+      IT hubs, startup culture, pleasant weather, and rich lifestyle.
+      It is the perfect mix of modern technology and traditional heritage.
+    </p>
+
+    <h3>Why Bangalore is Special?</h3>
+    <ul>
+      <li>Silicon Valley of India (Infosys, Wipro, Google, Microsoft, etc.)</li>
+      <li>Best startup ecosystem in India</li>
+      <li>Great education & research institutions</li>
+      <li>Famous pubs, nightlife, and food culture</li>
+      <li>Beautiful parks and tourist attractions</li>
+    </ul>
+
+    <p style="margin-top:25px;">
+      Click <b>Explore Bangalore</b> to see everything you need.
+    </p>
+  </section>
+
+  <!-- PAGE 2 EXPLORE -->
+  <section id="explore">
+    <h2>Explore Bangalore - Everything You Need</h2>
+    <p>
+      Select a category below to view the best places and services Bangalore offers.
+    </p>
+
+    <div class="card-container">
+      <div class="card" onclick="showDetails('restaurants')">
+        <h3>🍛 Best Restaurants</h3>
+        <p>Top places for Bangalore's best food.</p>
+      </div>
+
+      <div class="card" onclick="showDetails('pubs')">
+        <h3>🍻 Pubs & Bars</h3>
+        <p>Nightlife and best hangout places.</p>
+      </div>
+
+      <div class="card" onclick="showDetails('tourist')">
+        <h3>🏛 Tourist Places</h3>
+        <p>Historical and modern attractions.</p>
+      </div>
+
+      <div class="card" onclick="showDetails('religious')">
+        <h3>🛕 Religious Sites</h3>
+        <p>Famous temples, churches, mosques.</p>
+      </div>
+
+      <div class="card" onclick="showDetails('hospitals')">
+        <h3>🏥 Best Hospitals</h3>
+        <p>Top healthcare facilities.</p>
+      </div>
+
+      <div class="card" onclick="showDetails('startup')">
+        <h3>🚀 Startup & Business</h3>
+        <p>Everything needed to start a company.</p>
+      </div>
+
+      <div class="card" onclick="showDetails('education')">
+        <h3>🎓 Education & Colleges</h3>
+        <p>Top universities and institutes.</p>
+      </div>
+
+      <div class="card" onclick="showDetails('transport')">
+        <h3>🚇 Transport & Connectivity</h3>
+        <p>Metro, buses, airport, travel.</p>
+      </div>
+    </div>
+
+    <div class="details-box" id="detailsBox">
+      <h3>Click any category above to view details.</h3>
+      <p>Bangalore information will appear here.</p>
+    </div>
+  </section>
+
+  <footer>
+    © 2026 Bangalore City Website | Made with HTML only
+  </footer>
+
+  <!-- JAVASCRIPT -->
+  <script>
+    function showPage(pageId) {
+      document.querySelectorAll("section").forEach(section => {
+        section.classList.remove("active");
+      });
+
+      document.getElementById(pageId).classList.add("active");
+    }
+
+    function showDetails(category) {
+      let detailsBox = document.getElementById("detailsBox");
+
+      if (category === "restaurants") {
+        detailsBox.innerHTML = `
+          <h3>🍛 Best Restaurants in Bangalore</h3>
+          <ul>
+            <li><b>Vidyarthi Bhavan</b> - Famous for Dosa (Basavanagudi)</li>
+            <li><b>MTR</b> - Traditional South Indian meals</li>
+            <li><b>Nagarjuna</b> - Andhra meals and biryani</li>
+            <li><b>Empire Restaurant</b> - Affordable non-veg dishes</li>
+            <li><b>Meghana Foods</b> - Famous biryani & spicy food</li>
+          </ul>
+          <p><b>Tip:</b> Bangalore is a paradise for both veg and non-veg lovers.</p>
+        `;
+      }
+
+      else if (category === "pubs") {
+        detailsBox.innerHTML = `
+          <h3>🍻 Best Pubs & Bars in Bangalore</h3>
+          <ul>
+            <li><b>Toit</b> - Craft beer & amazing food (Indiranagar)</li>
+            <li><b>Ironhill</b> - Huge brewery with great ambience</li>
+            <li><b>Windmills Craftworks</b> - Music + brewery</li>
+            <li><b>Skyye</b> - Rooftop bar with city view</li>
+            <li><b>Church Street Social</b> - Perfect for hangouts</li>
+          </ul>
+          <p><b>Fact:</b> Bangalore is called the "Pub Capital of India".</p>
+        `;
+      }
+
+      else if (category === "tourist") {
+        detailsBox.innerHTML = `
+          <h3>🏛 Tourist Places in Bangalore</h3>
+          <ul>
+            <li><b>Lalbagh Botanical Garden</b> - Nature and glass house</li>
+            <li><b>Cubbon Park</b> - Green heart of Bangalore</li>
+            <li><b>Bangalore Palace</b> - Royal architecture</li>
+            <li><b>Vidhana Soudha</b> - Iconic government building</li>
+            <li><b>Nandi Hills</b> - Sunrise viewpoint near Bangalore</li>
+          </ul>
+          <p><b>Best Time:</b> Early morning visits are best due to traffic.</p>
+        `;
+      }
+
+      else if (category === "religious") {
+        detailsBox.innerHTML = `
+          <h3>🛕 Religious Sites in Bangalore</h3>
+          <ul>
+            <li><b>ISKCON Temple</b> - One of the biggest ISKCON temples</li>
+            <li><b>Bull Temple</b> - Famous Shiva temple (Basavanagudi)</li>
+            <li><b>St. Mary's Basilica</b> - Historic church</li>
+            <li><b>Jama Masjid</b> - One of the oldest mosques</li>
+            <li><b>Banashankari Temple</b> - Popular local temple</li>
+          </ul>
+          <p><b>Note:</b> Bangalore has a peaceful multi-cultural environment.</p>
+        `;
+      }
+
+      else if (category === "hospitals") {
+        detailsBox.innerHTML = `
+          <h3>🏥 Best Hospitals in Bangalore</h3>
+          <ul>
+            <li><b>Manipal Hospital</b> - Multi-specialty healthcare</li>
+            <li><b>Narayana Health</b> - Heart & critical care</li>
+            <li><b>Apollo Hospitals</b> - Trusted medical brand</li>
+            <li><b>Fortis Hospital</b> - High-quality treatment</li>
+            <li><b>Victoria Hospital</b> - Government hospital (major)</li>
+          </ul>
+          <p><b>Why good?</b> Bangalore is a top medical tourism destination in India.</p>
+        `;
+      }
+
+      else if (category === "startup") {
+        detailsBox.innerHTML = `
+          <h3>🚀 Startup & Business in Bangalore</h3>
+          <p>Bangalore is the best city in India to start a company.</p>
+
+          <h4>✔ Best Startup Areas</h4>
+          <ul>
+            <li>Koramangala</li>
+            <li>HSR Layout</li>
+            <li>Indiranagar</li>
+            <li>Whitefield</li>
+            <li>Electronic City</li>
+          </ul>
+
+          <h4>✔ Co-working Spaces</h4>
+          <ul>
+            <li>WeWork</li>
+            <li>91Springboard</li>
+            <li>IndiQube</li>
+            <li>BHIVE Workspace</li>
+          </ul>
+
+          <h4>✔ Why Bangalore is Perfect for Business?</h4>
+          <ul>
+            <li>Huge talent pool (engineers + developers)</li>
+            <li>Many investors and VC firms</li>
+            <li>Good IT infrastructure</li>
+            <li>Networking opportunities & startup events</li>
+          </ul>
+
+          <p><b>Advice:</b> If you want to build a startup, Bangalore is the battlefield to win.</p>
+        `;
+      }
+
+      else if (category === "education") {
+        detailsBox.innerHTML = `
+          <h3>🎓 Best Education & Colleges in Bangalore</h3>
+          <ul>
+            <li><b>IISc Bangalore</b> - Top research institute in India</li>
+            <li><b>Christ University</b> - Famous private university</li>
+            <li><b>PES University</b> - Engineering and management</li>
+            <li><b>MS Ramaiah Institute</b> - Engineering excellence</li>
+            <li><b>RV College of Engineering</b> - Top-tier engineering college</li>
+          </ul>
+          <p><b>Fact:</b> Bangalore attracts students from all over India.</p>
+        `;
+      }
+
+      else if (category === "transport") {
+        detailsBox.innerHTML = `
+          <h3>🚇 Transport & Connectivity in Bangalore</h3>
+          <ul>
+            <li><b>Namma Metro</b> - Fast travel inside the city</li>
+            <li><b>BMTC Buses</b> - Cheap and wide coverage</li>
+            <li><b>Kempegowda International Airport</b> - Major international airport</li>
+            <li><b>Majestic Bus & Railway Station</b> - Central hub</li>
+            <li><b>Cab Services</b> - Ola, Uber, Rapido available</li>
+          </ul>
+          <p><b>Reality Check:</b> Bangalore traffic is heavy, metro is the best option.</p>
+        `;
+      }
+
+      else {
+        detailsBox.innerHTML = `<h3>Invalid category selected.</h3>`;
+      }
+    }
+  </script>
+
+</body>
+</html>
